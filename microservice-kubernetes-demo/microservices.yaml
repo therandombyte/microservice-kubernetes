@@ -20,6 +20,14 @@ spec:
       containers:
       - image: docker.io/ewolff/microservice-kubernetes-demo-apache:latest
         name: apache
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
         ports:
         - containerPort: 80
         resources: {}
